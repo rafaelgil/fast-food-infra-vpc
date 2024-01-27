@@ -46,24 +46,5 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-    - name: Terraform Format Check
-      run: terraform fmt -check=true
-
-    - name: Terraform Validate
-      run: terraform validate
-
-    - name: Terraform Apply Destroy
-      id: apply
-      run: terraform apply -var-file=terraform.tfvars -destroy -auto-approve -no-color -input=false
-
     - name: Terraform Destroy
-      id: destroy
-      run: terraform destroy -var-file=terraform.tfvars -auto-approve -no-color -input=false
-
-    - name: Save and Commit Terraform Configuration Files
-      run: |
-        git config user.email "github-actions@github.com"
-        git config user.name "GitHub Actions"
-        git add .
-        git commit -m "Add Terraform configuration files" || true
-        git push || true
+      run: terraform destroy -auto-approve -input=false

@@ -1,6 +1,17 @@
 /*====
 Variables used across all modules
 ======*/
+
+terraform {
+  backend "s3" {
+    bucket  = "tfstate-backend-fast-food-infra-vpc"
+    key     = "terraform-deploy.tfstate"
+    region  = "us-east-1"
+    encrypt = true
+  }
+}
+
+
 locals {
   production_availability_zones = ["us-east-1a", "us-east-1b"]
   environment                   = "fast-food"
